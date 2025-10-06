@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Cafe - Interstellar Brews & Bites</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            position: relative;
+        }
+
+        /* Animated Stars Background */
+        .stars, .stars2, .stars3 {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .stars {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="10" r="1" fill="white" opacity="0.8"/><circle cx="90" cy="20" r="0.5" fill="white" opacity="0.6"/><circle cx="50" cy="80" r="1.5" fill="white" opacity="0.9"/></svg>') repeat;
+            animation: twinkle 20s linear infinite;
+        }
+
+        .stars2 {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="30" r="0.8" fill="white" opacity="0.7"/><circle cx="70" cy="60" r="1" fill="white" opacity="0.5"/></svg>') repeat;
+            animation: twinkle 30s linear infinite reverse;
+        }
+
+        .stars3 {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="40" cy="40" r="0.3" fill="white" opacity="0.4"/><circle cx="80" cy="90" r="1.2" fill="white" opacity="0.7"/></svg>') repeat;
+            animation: twinkle 40s linear infinite;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #4A90E2;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(74, 144, 226, 0.3) 0%, transparent 70%);
+        }
+
+        .hero-content h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px #4A90E2; }
+            to { text-shadow: 0 0 30px #4A90E2, 0 0 40px #4A90E2; }
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #4A90E2, #357ABD);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 400;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(74, 144, 226, 0.4);
+        }
+
+        /* Orbiting Planet */
+        .planet-orbit {
+            position: absolute;
+            top: 50%;
+            right: 10%;
+            width: 100px;
+            height: 100px;
+            animation: orbit 10s linear infinite;
+        }
+
+        .planet {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, #FF6B6B, #C44569);
+            border-radius: 50%;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+            animation: rotate 5s linear infinite;
+        }
+
+        @keyframes orbit {
+            0% { transform: rotate(0deg) translateX(50px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(50px) rotate(-360deg); }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Menu Section */
+        .menu {
+            padding: 5rem 5% 3rem;
+            text-align: center;
+        }
+
+        .menu h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #4A90E2;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .menu-card:hover {
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 0 20px 40px rgba(74, 144, 226, 0.3);
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+        }
+
+        .menu-card h3 {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-card p {
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #FF6B6B;
+        }
+
+        /* About Section */
+        .about {
+            padding: 3rem 5%;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .about h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #4A90E2;
+        }
+
+        .about p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #4A90E2;
+        }
+
+        .contact p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #4A90E2;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .nav-links { gap: 1rem; }
+            .menu-grid { grid-template-columns: 1fr; }
+            .social-links { flex-direction: column; gap: 1rem; }
+            .planet-orbit { right: 5%; width: 80px; height: 80px; }
+            .planet { width: 50px; height: 50px; top: 15px; left: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Stars -->
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">🌌 Cosmic Cafe</div>
+            <ul class="nav-links">
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Escape to the Stars</h1>
+            <p>Where cosmic brews meet galactic treats. Savor the universe, one sip at a time.</p>
+            <a href="#menu" class="cta-button">Explore the Galaxy</a>
+        </div>
+        <div class="planet-orbit">
+            <div class="planet"></div>
+        </div>
+    </section>
+
+    <section id="menu" class="menu">
+        <h2>Galactic Menu</h2>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <img src="https://img.freepik.com/premium-photo/vibrant-explosion-color-flavor-from-cup-coffee-with-milk-best-3d-graphic-resources_1072169-503.jpg?semt=ais_incoming&w=740&q=80" alt="Nebula Latte">
+                <h3>Nebula Latte</h3>
+                <p>Creamy espresso swirled with blue raspberry and stardust foam.</p>
+                <span class="price">$6.99</span>
+            </div>
+            <div class="menu-card">
+                <img src="https://i.pinimg.com/736x/f7/48/27/f7482760241bbcbb64acf4cd402ede7a.jpg" alt="Comet Cake">
+                <h3>Comet Cake</h3>
+                <p>Velvety chocolate layered with fiery chili ganache and meteor sprinkles.</p>
+                <span class="price">$8.50</span>
+            </div>
+            <div class="menu-card">
+                <img src="https://themondaybox.com/wp-content/uploads/2017/04/059_1-1-e1629942147446.jpg" alt="Black Hole Brownie">
+                <h3>Black Hole Brownie</h3>
+                <p>Rich dark chocolate that pulls you in – fudgy, infinite, and irresistible.</p>
+                <span class="price">$7.25</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2>About Our Cosmos</h2>
+        <p>Launched from the edge of the Milky Way, Cosmic Cafe blends earthly comforts with stellar wonders. No black holes here – just bold flavors and dreamy designs inspired by the night sky.</p>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Beam Us a Message</h2>
+        <p>Earth: (555) STAR-123 | <a href="mailto:prasanna101619@gmail.com" style="color:#fff; text-decoration: none;">cosmic@galaxy.net</a></p>
+        <div class="social-links">
+            <a href="mailto:prasanna101619@gmail.com">🌟 Instagram</a>
+            <a href="mailto:prasanna101619@gmail.com">🪐 X</a>
+            <a href="mailto:prasanna101619@gmail.com">🌙 Face Book</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Cosmic Cafe. All rights reserved. Made by Prasanna D</p>
+    </footer>
+</body>
+</html>
